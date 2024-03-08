@@ -10,7 +10,7 @@ import numpy as np
 
 
 class DepthEstimator(Node):
-    def __init__(self, input_topic, output_topic):
+    def __init__(self, input_topic: str, output_topic: str):
         super().__init__('image_publisher')
         self.publisher_ = self.create_publisher(Image, output_topic, 10)
         self.bridge = CvBridge()
@@ -26,15 +26,16 @@ class DepthEstimator(Node):
 
 
 def main(args=None):
+    # parse command line arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', '--input_topic', type=str, required=True, help='Input topic name')
     parser.add_argument('-o', '--output_topic', type=str, default='/camera/depth', help='Output topic name')
     cmdline_args = parser.parse_args()
 
+    # run the node
     rclpy.init(args=args)
     image_publisher = DepthEstimator(cmdline_args.input_topic, cmdline_args.output_topic)
     rclpy.spin(image_publisher)
-    cv2.destroyAllWindows()
     rclpy.shutdown()
 
 
