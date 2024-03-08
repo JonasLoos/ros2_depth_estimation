@@ -20,6 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'depth_estimation = ros2_depth_estimation.depth_estimation:main',
         ],
     },
 )

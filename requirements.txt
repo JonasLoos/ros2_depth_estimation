@@ -1,0 +1,4 @@
+transformers
+cv-bridge
+opencv-python-headless
+numpy
